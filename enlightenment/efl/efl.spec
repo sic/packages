@@ -58,16 +58,21 @@ make %{?_smp_mflags}
 %install
 rm -rf $RPM_BUILD_ROOT
 %make_install
-
+#make install DESTDIR=%{buildroot}
 
 %files
-%doc
+%doc AUTHORS ChangeLog NEWS README
 %{_bindir}/*
+%{_libdir}/*.so.*
+%{_datadir}/*
 
 %files devel
 %{_includedir}/*
-
+%{_libdir}/*.so 
+%{_libdir}/*.la
+%{_libdir}/pkgconfig/*.pc
+%{_libdir}/cmake/*
 
 %changelog
 * Sat Jan 17 2015 Stuart Campbell <stuart@sicampbell.com>
-- 
+- Initial package 
