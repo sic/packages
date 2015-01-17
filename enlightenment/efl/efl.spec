@@ -59,9 +59,10 @@ make %{?_smp_mflags}
 rm -rf $RPM_BUILD_ROOT
 %make_install
 #make install DESTDIR=%{buildroot}
+%find_lang %{name}
 
-%files
-%doc AUTHORS ChangeLog NEWS README
+%files -f %{name}.lang
+%doc AUTHORS ChangeLog NEWS README COPYING
 %{_bindir}/*
 %{_libdir}/*.so.*
 %{_datadir}/*
