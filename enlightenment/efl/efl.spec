@@ -30,17 +30,27 @@ Requires:       gstreamer1
 %description
 The Enlightenment Foundation Libraries (EFL) are a collection of libraries that make up the foundation of the Enlightenment window manager.
 
+%package	devel
+Summary:	Development files for %{name}
+Requires:	%{name}%{?_isa} = %{version}-%{release}
+
+%description	devel
+The %{name}-devel package contains libraries and header files for
+developing applications that use %{name}.
+
+
 %prep
 %setup -q -n %{name}-%{version}
 
 
 %build
 %configure			   \
-	   --prefix=%{buildroot}   \
            --enable-systemd        \
+           --enable-doc        \
            --disable-rpath         \
 	   --enable-ecore-sdl      \
            --enable-tslib          
+#	   --prefix=%{buildroot}   \
 
 make %{?_smp_mflags}
 
@@ -52,7 +62,10 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %doc
+%{_bindir}/*
 
+%files devel
+%{_includedir}/*
 
 
 %changelog
