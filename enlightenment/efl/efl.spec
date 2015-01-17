@@ -66,6 +66,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_bindir}/*
 %{_libdir}/*.so.*
 %{_datadir}/*
+%{_prefix}/lib/systemd/*
 
 %files devel
 %{_includedir}/*
@@ -73,6 +74,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/*.la
 %{_libdir}/pkgconfig/*.pc
 %{_libdir}/cmake/*
+%{_libdir}/*
+
 
 %changelog
 * Sat Jan 17 2015 Stuart Campbell <stuart@sicampbell.com>
