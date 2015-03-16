@@ -8,6 +8,7 @@ URL:            http://ryan-roemer.github.com/sphinx-bootstrap-theme/
 Source0:        https://pypi.python.org/packages/source/s/sphinx-bootstrap-theme/sphinx-bootstrap-theme-%{version}.tar.gz
 
 BuildRequires:  python2-devel
+BuildRequires:  python-setuptools
 
 Requires:       python-sphinx
 
@@ -30,5 +31,5 @@ TODO: Add a description!
 %{python2_sitelib}/*
 
 %changelog
-* Tue Jan 13 2015 Stuart Campbell
+* Tue Jan 13 2015 Stuart Campbell <sic@fedoraproject.org> - 0.4.5-1
 - Initial package
