@@ -13,7 +13,9 @@ BuildRequires:  python-setuptools
 Requires:       python-sphinx
 
 %description
-TODO: Add a description!
+This sphinx theme integrates the Booststrap CSS / Javascript framework with various layout options, 
+hierarchical menu navigation, and mobile-friendly responsive design.  It is configurable, extensible
+and can use any number of difference Bootswatch CSS themes.
 
 %prep
 %setup -q -n sphinx-bootstrap-theme-%{version}
