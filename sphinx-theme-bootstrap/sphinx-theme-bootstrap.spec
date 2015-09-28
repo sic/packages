@@ -9,7 +9,7 @@
 
 Name:           python-sphinx-theme-bootstrap
 Version:        0.4.5
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A sphinx theme that integrates the Bootstrap framework
 
 License:        MIT
@@ -71,7 +71,7 @@ and can use any number of difference Bootswatch CSS themes.
 
 
 %changelog
-* Tue Jan 13 2015 Stuart Campbell <sic@fedoraproject.org> - 0.4.5-1
+* Tue Jan 13 2015 Stuart Campbell <sic@fedoraproject.org> - 0.4.5-2
 - Added python3 support 
 
 * Tue Jan 13 2015 Stuart Campbell <sic@fedoraproject.org> - 0.4.5-1
