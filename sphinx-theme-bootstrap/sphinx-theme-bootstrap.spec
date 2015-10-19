@@ -1,5 +1,5 @@
-# RHEL-7 doesn't have python 3 and does not know about __python2
-%if 0%{?rhel} == 7
+# RHEL doesn't have python 3 and does not know about __python2
+%if 0%{?rhel}  
   %global __python2 %{__python}
   %global python2_sitelib %{python_sitelib}
   %global with_python3 0
@@ -9,7 +9,7 @@
 
 Name:           python-sphinx-theme-bootstrap
 Version:        0.4.5
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        A sphinx theme that integrates the Bootstrap framework
 
 License:        MIT
@@ -71,7 +71,10 @@ and can use any number of difference Bootswatch CSS themes.
 
 
 %changelog
-* Tue Jan 13 2015 Stuart Campbell <sic@fedoraproject.org> - 0.4.5-2
+* Fri Oct 3 2015 Stuart Campbell <sic@fedoraproject.org> - 0.4.5-3
+- Changed to check for all RHELs
+
+* Mon Sep 28 2015 Stuart Campbell <sic@fedoraproject.org> - 0.4.5-2
 - Added python3 support 
 
 * Tue Jan 13 2015 Stuart Campbell <sic@fedoraproject.org> - 0.4.5-1
