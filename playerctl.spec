@@ -7,7 +7,7 @@ License:        LGPL
 URL:            https://github.com/acrisci/playerctl
 Source0:        https://github.com/acrisci/playerctl/archive/v0.4.2.tar.gz
 
-Requires:       gtk-doc
+BuildRequires:       gtk-doc
 
 %description
 Playerctl is a command-line utility and library for controlling media players
