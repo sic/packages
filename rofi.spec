@@ -10,6 +10,9 @@ Source0:        https://github.com/DaveDavenport/rofi/releases/download/%{versio
 BuildRequires:  autoconf
 BuildRequires:  automake
 BuildRequires:  pkgconfig
+BuildRequires:  glib2-devel 
+BuildRequires:  libX11-devel 
+BuildRequires:  libXinerama-devel 
 
 Requires:       cairo
 Requires:       libX11
