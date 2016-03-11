@@ -3,7 +3,7 @@ Version:        0.15.12
 Release:        1%{?dist}
 Summary:        A window switcher, run dialog and dmenu replacement
 
-License:        UNKNOWN
+License:        MIT
 URL:            https://davedavenport.github.io/rofi/
 Source0:        https://github.com/DaveDavenport/rofi/releases/download/%{version}/rofi-%{version}.tar.gz
 
