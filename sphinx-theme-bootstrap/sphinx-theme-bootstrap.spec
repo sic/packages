@@ -54,24 +54,37 @@ and can use any number of difference Bootswatch CSS themes.
 
 %install
 %{__python2} setup.py install --skip-build --root %{buildroot}
+# Remove bundled JQuery
+rm -rf %{buildroot}%{python2_sitelib}/sphinx_bootstrap_theme/bootstrap/static/js
+rm -rf %{buildroot}%{python2_sitelib}/sphinx_bootstrap_theme/bootstrap/static/bootstrap-3.2.0/js
+rm -rf %{buildroot}%{python2_sitelib}/sphinx_bootstrap_theme/bootstrap/static/bootstrap-2.3.2/js
 
 %if %{with_python3}
 %{__python3} setup.py install --skip-build --root %{buildroot}
+# Remove bundled JQuery
+rm -rf %{buildroot}%{python3_sitelib}/sphinx_bootstrap_theme/bootstrap/static/js
+rm -rf %{buildroot}%{python3_sitelib}/sphinx_bootstrap_theme/bootstrap/static/bootstrap-3.2.0/js
+rm -rf %{buildroot}%{python3_sitelib}/sphinx_bootstrap_theme/bootstrap/static/bootstrap-2.3.2/js
 %endif
 
 %files
 %doc LICENSE.txt README.txt README.rst
-%{python2_sitelib}/*
+%{python2_sitelib}/sphinx_bootstrap_theme/*
+%{python2_sitelib}/sphinx_bootstrap_theme-%{version}-py2.7.egg-info/*
 
 %if %{with_python3}
 %files -n python3-sphinx-theme-bootstrap
 %doc LICENSE.txt README.txt README.rst
-%{python3_sitelib}/*
+%{python3_sitelib}/sphinx_bootstrap_theme/*
+%{python3_sitelib}/sphinx_bootstrap_theme-%{version}-py3.4.egg-info/*
 %endif
 
 
 %changelog
-* Fri Oct 3 2015 Stuart Campbell <sic@fedoraproject.org> - 0.4.5-3
+* Fri Mar 11 2016 Stuart Campbell <sic@fedoraproject.org> - 0.4.5-4
+- Removed bundled JQuery
+
+* Fri Oct 2 2015 Stuart Campbell <sic@fedoraproject.org> - 0.4.5-3
 - Changed to check for all RHELs
 
 * Mon Sep 28 2015 Stuart Campbell <sic@fedoraproject.org> - 0.4.5-2
