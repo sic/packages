@@ -9,10 +9,13 @@ Source0:        https://github.com/DaveDavenport/rofi/releases/download/%{versio
 
 BuildRequires:  autoconf
 BuildRequires:  automake
+BuildRequires:  glib2-devel
+BuildRequires:  i3
+BuildRequires:  libX11-devel
+BuildRequires:  libXinerama-devel
+BuildRequires:  pango-devel
 BuildRequires:  pkgconfig
-BuildRequires:  glib2-devel 
-BuildRequires:  libX11-devel 
-BuildRequires:  libXinerama-devel 
+BuildRequires:  startup-notification-devel
 
 Requires:       cairo
 Requires:       libX11
