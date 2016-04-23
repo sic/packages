@@ -1,0 +1,21 @@
+diff --git a/applications/NXtranslate/CMakeLists.txt b/applications/NXtranslate/CMakeLists.txt
+index 0f5fcc5..0e17005 100644
+--- a/applications/NXtranslate/CMakeLists.txt
++++ b/applications/NXtranslate/CMakeLists.txt
+@@ -85,4 +85,3 @@ target_link_libraries(nxtranslate
+ 
+ 
+ install (TARGETS nxtranslate DESTINATION bin COMPONENT Runtime)
+-
+diff --git a/applications/NXtranslate/binary/CMakeLists.txt b/applications/NXtranslate/binary/CMakeLists.txt
+index 1402520..e871f84 100644
+--- a/applications/NXtranslate/binary/CMakeLists.txt
++++ b/applications/NXtranslate/binary/CMakeLists.txt
+@@ -29,3 +29,6 @@
+ include_directories("${CMAKE_CURRENT_SOURCE_DIR}/..")
+ 
+ add_library (BinaryRetriever BinaryRetriever.cpp)
++
++install (TARGETS BinaryRetriever DESTINATION ${CMAKE_INSTALL_LIBDIR}
++         COMPONENT Runtime)
+
