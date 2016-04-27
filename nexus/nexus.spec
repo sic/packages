@@ -6,8 +6,9 @@ Summary:        NeXus scientific data file format
 License:        LGPL
 URL:            http://www.nexusformat.org/
 Source0:        https://github.com/nexusformat/code/archive/code-issue_414.zip
-# Actually install library for NXtranslate program
+# Actually install libraries for NXtranslate program
 Patch0:         nexus-nxtranslate-binary.patch
+Patch1:         nexus-nxtranslate-edf.patch
 
 BuildRequires:  cmake
 BuildRequires:  hdf5-devel
@@ -61,6 +62,7 @@ BuildRequires:  readline-devel
 #%setup -q -n code-%{version}
 %setup -q -n code-issue_414
 %patch0 -p1 -b .NXtranslate-binary
+%patch1 -p1 -b .NXtranslate-edf
 
 %build
 %cmake \
@@ -97,6 +99,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_bindir}/nxtranslate
 %{_bindir}/nxtraverse
 %{_libdir}/libBinaryRetriever.so
+%{_libdir}/libEdf.so
 %doc %{_datadir}/doc/NeXus/programs/
 %{_mandir}/man1/
 
