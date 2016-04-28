@@ -1,0 +1,14 @@
+diff --git a/applications/NXtranslate/sns_histogram/CMakeLists.txt b/applications/NXtranslate/sns_histogram/CMakeLists.txt
+index e13ea47..4a95e22 100644
+--- a/applications/NXtranslate/sns_histogram/CMakeLists.txt
++++ b/applications/NXtranslate/sns_histogram/CMakeLists.txt
+@@ -28,6 +28,8 @@
+ 
+ include_directories("${CMAKE_CURRENT_SOURCE_DIR}")
+ 
+-add_library (SNShistogram string_location_format.cpp 
++add_library (SNShistogram string_location_format.cpp
+                           SNS_retriever.cpp)
+ 
++install (TARGETS SNShistogram DESTINATION ${CMAKE_INSTALL_LIBDIR} 
++        COMPONENT Runtime)

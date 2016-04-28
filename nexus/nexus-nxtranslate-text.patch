@@ -1,0 +1,31 @@
+diff --git a/applications/NXtranslate/text_collist/CMakeLists.txt b/applications/NXtranslate/text_collist/CMakeLists.txt
+index 3153bdd..ae7441d 100644
+--- a/applications/NXtranslate/text_collist/CMakeLists.txt
++++ b/applications/NXtranslate/text_collist/CMakeLists.txt
+@@ -30,4 +30,5 @@ include_directories("${CMAKE_CURRENT_SOURCE_DIR}")
+ 
+ add_library(TextCollist collist_retriever.cpp)
+ 
+-
++install (TARGETS TextCollist DESTINATION ${CMAKE_INSTALL_LIBDIR}
++         COMPONENT Runtime)
+diff --git a/applications/NXtranslate/text_plain/CMakeLists.txt b/applications/NXtranslate/text_plain/CMakeLists.txt
+index 2242251..c39402f 100644
+--- a/applications/NXtranslate/text_plain/CMakeLists.txt
++++ b/applications/NXtranslate/text_plain/CMakeLists.txt
+@@ -30,3 +30,5 @@ include_directories("${CMAKE_CURRENT_SOURCE_DIR}")
+ 
+ add_library (TextPlain retriever.cpp)
+ 
++install (TARGETS TextPlain DESTINATION ${CMAKE_INSTALL_LIBDIR}
++         COMPONENT Runtime)
+diff --git a/applications/NXtranslate/text_xml/CMakeLists.txt b/applications/NXtranslate/text_xml/CMakeLists.txt
+index c5bf2ac..ccbf713 100644
+--- a/applications/NXtranslate/text_xml/CMakeLists.txt
++++ b/applications/NXtranslate/text_xml/CMakeLists.txt
+@@ -32,3 +32,5 @@ add_library (TextXML xml_retriever.cpp
+                      xml_retriever_dom.cpp
+                      void_copy.cpp)
+ 
++install (TARGETS TextXML DESTINATION ${CMAKE_INSTALL_LIBDIR}
++         COMPONENT Runtime)

@@ -1,6 +1,6 @@
 Name:           nexus
 Version:        4.4.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        NeXus scientific data file format
 
 License:        LGPL
@@ -9,6 +9,12 @@ Source0:        https://github.com/nexusformat/code/archive/code-issue_414.zip
 # Actually install libraries for NXtranslate program
 Patch0:         nexus-nxtranslate-binary.patch
 Patch1:         nexus-nxtranslate-edf.patch
+Patch2:         nexus-nxtranslate-frm2.patch
+Patch3:         nexus-nxtranslate-loopy.patch
+Patch4:         nexus-nxtranslate-snshisto.patch
+Patch5:         nexus-nxtranslate-spec.patch
+Patch6:         nexus-nxtranslate-text.patch
+
 
 BuildRequires:  cmake
 BuildRequires:  hdf5-devel
@@ -63,6 +69,12 @@ BuildRequires:  readline-devel
 %setup -q -n code-issue_414
 %patch0 -p1 -b .NXtranslate-binary
 %patch1 -p1 -b .NXtranslate-edf
+%patch2 -p1 -b .NXtranslate-frm2
+%patch3 -p1 -b .NXtranslate-loopy
+%patch4 -p1 -b .NXtranslate-snshisto
+%patch5 -p1 -b .NXtranslate-spec
+%patch6 -p1 -b .NXtranslate-text
+
 
 %build
 %cmake \
@@ -100,10 +112,20 @@ rm -rf $RPM_BUILD_ROOT
 %{_bindir}/nxtraverse
 %{_libdir}/libBinaryRetriever.so
 %{_libdir}/libEdf.so
+%{_libdir}/libFRM2.so
+%{_libdir}/libLoopy.so
+%{_libdir}/libSNShistogram.so
+%{_libdir}/libSpec.so
+%{_libdir}/libTextCollist.so
+%{_libdir}/libTextPlain.so
+%{_libdir}/libTextXML.so
 %doc %{_datadir}/doc/NeXus/programs/
 %{_mandir}/man1/
 
 %changelog
+* Thu Apr 28 2016 Stuart Campbell <sic@fedoraproject.org> - 4.4.1-2
+- Updated to ship all the tools libraries.
+
 * Mon Dec 21 2015 Stuart Campbell <sic@fedoraproject.org> - 4.4.1-1
 - Updated to nexus 4.4.1
 
