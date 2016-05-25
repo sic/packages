@@ -16,6 +16,8 @@ Prefix: %{_prefix}
 BuildArch: noarch
 Vendor: Chris P <chris@plot.ly>
 Url: https://plot.ly/python/
+Requires: python
+BuildRequires: python-setuptools
 
 %description
 =======
