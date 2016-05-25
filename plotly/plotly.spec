@@ -7,7 +7,7 @@
 Summary: Python plotting library for collaborative, interactive, publication-quality graphs.
 Name: %{name}
 Version: %{version}
-Release: %{release}
+Release: %{release}%{?dist}
 Source0: %{name}-%{unmangled_version}.tar.gz
 License: MIT
 Group: Development/Libraries
