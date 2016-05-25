@@ -14,8 +14,7 @@ Summary: %{summary}
 Name: python-%{srcname}
 Version: 1.10.0
 Release: %{release}%{?dist}
-Source0: %{srcname}-%{version}.tar.gz
-#Source0: https://pypi.python.org/packages/2a/7f/74aff937097c6fa9938a5d3a3f0f98a387055a60457507be9d60b1c4dc85/plotly-1.10.0.tar.gz
+Source0: https://pypi.python.org/packages/2a/7f/74aff937097c6fa9938a5d3a3f0f98a387055a60457507be9d60b1c4dc85/plotly-1.10.0.tar.gz
 License: MIT
 Group: Development/Libraries
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
