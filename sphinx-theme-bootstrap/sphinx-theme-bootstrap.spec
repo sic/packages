@@ -12,6 +12,8 @@ Source0:        https://pypi.python.org/packages/source/s/sphinx-bootstrap-theme
 
 BuildArch:      noarch
 
+Requires:       js-jquery1
+
 BuildRequires:  python2-devel
 BuildRequires:  python3-devel
 
@@ -48,18 +50,20 @@ and can use any number of different Bootswatch CSS themes.
 %build
 %py2_build
 %py3_build
-# Remove the bundled JQuery
-rm -rf %{buildroot}%{python2_sitelib}/sphinx_bootstrap_theme/bootstrap/static/js
-rm -rf %{buildroot}%{python2_sitelib}/sphinx_bootstrap_theme/bootstrap/static/bootstrap-3.2.0/js
-rm -rf %{buildroot}%{python2_sitelib}/sphinx_bootstrap_theme/bootstrap/static/bootstrap-2.3.2/js
-rm -rf %{buildroot}%{python3_sitelib}/sphinx_bootstrap_theme/bootstrap/static/js
-rm -rf %{buildroot}%{python3_sitelib}/sphinx_bootstrap_theme/bootstrap/static/bootstrap-3.2.0/js
-rm -rf %{buildroot}%{python3_sitelib}/sphinx_bootstrap_theme/bootstrap/static/bootstrap-2.3.2/js
 
 
 %install
 %py2_install
 %py3_install
+# Remove the bundled JQuery
+rm -rf %{buildroot}%{python2_sitelib}/sphinx_bootstrap_theme/bootstrap/static/js/jquery-1.11.0.min.js
+rm -rf %{buildroot}%{python3_sitelib}/sphinx_bootstrap_theme/bootstrap/static/js/jquery-1.11.0.min.js
+# Now link to the central jquery
+ln -sf %{_datadir}/javascript/jquery/1.11.2/jquery.min.js \
+%{buildroot}/%{python2_sitelib}/sphinx_bootstrap_theme/bootstrap/static/js/jquery-1.11.0.min.js
+ln -sf %{_datadir}/javascript/jquery/1.11.2/jquery.min.js \
+%{buildroot}/%{python3_sitelib}/sphinx_bootstrap_theme/bootstrap/static/js/jquery-1.11.0.min.js
+
 
 %files -n python2-%{srcname}
 %license LICENSE.txt
@@ -75,8 +79,8 @@ rm -rf %{buildroot}%{python3_sitelib}/sphinx_bootstrap_theme/bootstrap/static/bo
 
 
 %changelog
-* Fri Mar 11 2016 Stuart Campbell <sic@fedoraproject.org> - 0.4.5-2
-- Removed bundled JQuery
+* Sat Jun 18 2016 Stuart Campbell <sic@fedoraproject.org> - 0.4.5-2
+- Removed bundled JQuery and added links to central version
 
 * Thu Nov 05 2015 Stuart Campbell <sic@fedoraproject.org> - 0.4.5-1
 - Initial package for fedora only
