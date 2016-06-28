@@ -12,7 +12,8 @@ Source0:        https://pypi.python.org/packages/source/s/stompest.async/stompes
 
 BuildArch:      noarch
 
-BuildRequires:  python2-devel
+BuildRequires:  python-devel
+BuildRequires:  python-setuptools
 
 %description
 This package provides the asynchronous STOMP client based upon the stompest library. It leverages 
