@@ -1,12 +1,11 @@
 Name:           nexus
-Version:        4.4.2rc1
+Version:        4.4.3
 Release:        1%{?dist}
 Summary:        NeXus scientific data file format
 
 License:        LGPL
 URL:            http://www.nexusformat.org/
-Source0:        https://github.com/nexusformat/code/archive/v4.4.2-rc1.tar.gz
-
+Source0:        https://github.com/nexusformat/code/archive/v4.4.3.tar.gz
 
 BuildRequires:  cmake
 BuildRequires:  hdf5-devel
@@ -55,11 +54,8 @@ BuildRequires:  readline-devel
 %{summary}.
 
 
-
 %prep
-#%setup -q -n code-%{version}
-%setup -q -n code-4.4.2-rc1
-
+%setup -q -n code-%{version}
 
 %build
 %cmake \
@@ -99,8 +95,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/
 
 %changelog
-* Tue Jun 28 2016 Stuart Campbell <sic@fedoraproject.org> - 4.4.2rc1-1
-* Updated to NeXus 4.4.2-rc1
+* Tue Jun 28 2016 Stuart Campbell <sic@fedoraproject.org> - 4.4.3-1
+- Updated to NeXus 4.4.3
 
 * Thu Apr 28 2016 Stuart Campbell <sic@fedoraproject.org> - 4.4.1-2
 - Updated to ship all the tools libraries.
