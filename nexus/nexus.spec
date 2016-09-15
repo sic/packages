@@ -1,13 +1,16 @@
 Name:           nexus
 Version:        4.4.3
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        NeXus scientific data file format
 
 License:        LGPL
 URL:            http://www.nexusformat.org/
 Source0:        https://github.com/nexusformat/code/archive/v4.4.3.tar.gz
+# Fix the version reported by the library 
+#   (see https://github.com/nexusformat/code/issues/437)
+Patch0:	        nexus-fix-version.patch
 # Remove an additional flag that doesn't work in the EL6 version of gfortran
-Patch0:         nexus-el6-fortran-flags.patch
+Patch1:         nexus-el6-fortran-flags.patch
 
 BuildRequires:  cmake
 BuildRequires:  hdf5-devel
@@ -58,10 +61,11 @@ BuildRequires:  readline-devel
 
 %prep
 %setup -q -n code-%{version}
+%patch0 -p1 -b .fix-version
 
 %if 0%{?el6}
 # Fortran flag not supported on EL6
-%patch0 -p1 -b .el6-flags
+%patch1 -p1 -b .el6-flags
 %endif
 
 
@@ -103,7 +107,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/
 
 %changelog
-* Tue Jun 28 2016 Stuart Campbell <sic@fedoraproject.org> - 4.4.3-1
+* Thu Sep 15 2016 Stuart Campbell <sic@fedoraproject.org> - 4.4.3-2
+- Added patch to fix version number
+
+* Mon Sep 12 2016 Stuart Campbell <sic@fedoraproject.org> - 4.4.3-1
 - Updated to NeXus 4.4.3
 
 * Thu Apr 28 2016 Stuart Campbell <sic@fedoraproject.org> - 4.4.1-2
