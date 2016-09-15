@@ -6,6 +6,8 @@ Summary:        NeXus scientific data file format
 License:        LGPL
 URL:            http://www.nexusformat.org/
 Source0:        https://github.com/nexusformat/code/archive/v4.4.3.tar.gz
+# Remove an additional flag that doesn't work in the EL6 version of gfortran
+Patch0:         nexus-el6-fortran-flags.patch
 
 BuildRequires:  cmake
 BuildRequires:  hdf5-devel
@@ -56,6 +58,12 @@ BuildRequires:  readline-devel
 
 %prep
 %setup -q -n code-%{version}
+
+%if 0%{?el6}
+# Fortran flag not supported on EL6
+%patch0 -p1 -b .el6-flags
+%endif
+
 
 %build
 %cmake \
