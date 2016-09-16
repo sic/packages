@@ -8,7 +8,7 @@ URL:            http://www.nexusformat.org/
 Source0:        https://github.com/nexusformat/code/archive/v4.4.3.tar.gz
 # Fix the version reported by the library 
 #   (see https://github.com/nexusformat/code/issues/437)
-Patch0:	        nexus-fix-version.patch
+Patch0:         nexus-fix-version.patch
 # Remove an additional flag that doesn't work in the EL6 version of gfortran
 Patch1:         nexus-el6-fortran-flags.patch
 
@@ -36,7 +36,6 @@ visualization of neutron, x-ray, and muon data.
 %package        devel
 Summary:        Development files for %{name}
 Requires:       %{name} = %{version}-%{release}
-BuildArch:      noarch
 Requires:       hdf5-devel
 Requires:       hdf-devel
 Requires:       mxml-devel
