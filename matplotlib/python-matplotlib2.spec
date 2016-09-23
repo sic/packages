@@ -4,8 +4,8 @@
 %global with_python3            0
 %endif
 %global __provides_exclude_from .*/site-packages/.*\\.so$
-%global with_html               1
-%global run_tests               1
+%global with_html               0
+%global run_tests               0
 
 # On RHEL 7 onwards, don't build with wx:
 %if 0%{?rhel} >= 7
@@ -57,11 +57,11 @@ Source0:        https://github.com/matplotlib/matplotlib/archive/v%{version}%{?r
 Source1:        setup.cfg
 
 #Patch0:         %{name}-noagg.patch
-# c
-#Patch2:         20_matplotlibrc_path_search_fix.patch
+# https://github.com/matplotlib/matplotlib/issues/6536
+Patch2:         20_matplotlibrc_path_search_fix.patch
 Patch5:         70_bts720549_try_StayPuft_for_xkcd.patch
 # https://github.com/matplotlib/matplotlib/issues/6537
-#Patch6:         python-matplotlib-use-system-six.patch
+Patch6:         python-matplotlib-use-system-six.patch
 # https://github.com/matplotlib/matplotlib/pull/6558
 # https://github.com/matplotlib/matplotlib/issues/6539
 Patch7:         python-matplotlib-disable-failing-tests.patch
@@ -147,7 +147,6 @@ errorcharts, scatterplots, etc, with just a few lines of code.
 Summary:        Qt4 backend for python-matplotlib
 Group:          Development/Libraries
 Requires:       python2-matplotlib%{?_isa} = %{version}-%{release}
-Requires:       python2-matplotlib-qt5
 BuildRequires:  PyQt4-devel
 Requires:       PyQt4
 
@@ -270,6 +269,7 @@ BuildRequires:  python3-devel
 BuildRequires:  python3-setuptools
 BuildRequires:  python3-gobject
 BuildRequires:  python3-numpy
+BuildRequires:  python3-numpydoc
 BuildRequires:  python3-pycxx-devel
 BuildRequires:  python3-pyparsing
 BuildRequires:  python3-pytz
@@ -309,7 +309,6 @@ errorcharts, scatterplots, etc, with just a few lines of code.
 Summary:        Qt4 backend for python3-matplotlib
 Group:          Development/Libraries
 Requires:       python3-matplotlib%{?_isa} = %{version}-%{release}
-Requires:       python3-matplotlib-qt5
 BuildRequires:  python3-PyQt4-devel
 Requires:       python3-PyQt4
 
@@ -376,7 +375,7 @@ fi
 sed -i 's/\(USE_FONTCONFIG = \)False/\1True/' lib/matplotlib/font_manager.py
 %endif
 
-#%patch2 -p1
+%patch2 -p1
 #%patch5 -p1
 for f in $(find . -type f -name '*.py' -print) ; do
  if grep -q "matplotlib.externals" $f ; then
@@ -384,7 +383,7 @@ for f in $(find . -type f -name '*.py' -print) ; do
  fi
 done
 #%patch6 -p1 -b .six
-%patch7 -p1 -b .tests
+#%patch7 -p1 -b .tests
 %ifarch armv7hl
 %patch8 -p1 -b .tests-armv7hl
 %endif
@@ -479,7 +478,7 @@ PYTHONPATH=%{buildroot}%{python3_sitearch} \
 %exclude %{python2_sitearch}/matplotlib/backends/_tkagg.so
 %exclude %{python2_sitearch}/matplotlib/backends/backend_wx.*
 %exclude %{python2_sitearch}/matplotlib/backends/backend_wxagg.*
-%exclude %{_pkgdocdir}/*/
+#%exclude %{_pkgdocdir}
 
 %files -n python2-matplotlib-qt4
 %{python2_sitearch}/matplotlib/backends/backend_qt4.*
