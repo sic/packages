@@ -45,11 +45,11 @@
 # Use the same directory of the main package for subpackage licence and docs
 %global _docdir_fmt %{name}
 
-%global rctag rc2
 
 Name:           python-matplotlib
-Version:        1.5.2
-Release:        0.2%{?rctag:.%{rctag}}%{?dist}
+Version:        1.5.3
+#Release:        0.1%{?rctag:.%{rctag}}%{?dist}
+Release:        0.1%{?dist}
 Summary:        Python 2D plotting library
 Group:          Development/Libraries
 # qt4_editor backend is MIT
@@ -385,7 +385,7 @@ for f in $(find . -type f -name '*.py' -print) ; do
  fi
 done
 %patch6 -p1 -b .six
-%patch7 -p1 -b .tests
+#%patch7 -p1 -b .tests
 %ifarch armv7hl
 %patch8 -p1 -b .tests-armv7hl
 %endif
