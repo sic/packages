@@ -1,12 +1,12 @@
 Name:           nexus
 Version:        4.4.3
 Release:        2%{?dist}
-Summary:        NeXus scientific data file format
+Summary:        Libraries and tools for the NeXus scientific data file format
 
-License:        LGPL
+License:        LGPLv2+
 URL:            http://www.nexusformat.org/
 Source0:        https://github.com/nexusformat/code/archive/v4.4.3.tar.gz
-# Fix the version reported by the library 
+# Fix the version reported by the library
 #   (see https://github.com/nexusformat/code/issues/437)
 Patch0:         nexus-fix-version.patch
 # Remove an additional flag that doesn't work in the EL6 version of gfortran
@@ -19,7 +19,6 @@ BuildRequires:  mxml-devel
 BuildRequires:  gcc-gfortran
 BuildRequires:  python-docutils
 
-
 Requires:       libgfortran
 Requires:       hdf5
 Requires:       hdf
@@ -27,27 +26,25 @@ Requires:       mxml
 
 
 %description
-NeXus is a common data format for neutron, x-ray, and muon science. It is
-being developed as an international standard by scientists and programmers
-representing major scientific facilities in Europe, Asia, Australia, and
-North America in order to facilitate greater cooperation in the analysis and
-visualization of neutron, x-ray, and muon data.
+NeXus is a common data format for neutron, x-ray, and muon science. This
+package provides tools and libraries for accessing these files.  The on disk
+represenation is based upon either hdf4, hdf5 or xml
 
 %package        devel
 Summary:        Development files for %{name}
-Requires:       %{name} = %{version}-%{release}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       hdf5-devel
 Requires:       hdf-devel
 Requires:       mxml-devel
 
 %description    devel
-The %{name}-devel package contains libraries and header files for
-developing applications that use %{name}.
+The %{name}-devel package contains header files for
+developing applications that use %{name}
 
 
 %package        tools
 Summary:        Applications for reading and writing NeXus files.
-Requires:       %{name} = %{version}-%{release}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       libxml2
 Requires:       readline
 BuildRequires:  libxml2-devel
@@ -81,11 +78,11 @@ BuildRequires:  readline-devel
 make %{?_smp_mflags}
 
 %install
-rm -rf $RPM_BUILD_ROOT
 %make_install
 
 %files
 %doc %{_datadir}/doc/NeXus/README.doc
+%{_datadir}/doc/NeXus/
 %{_libdir}/libNeXus*
 %{_libdir}/nexus/
 
@@ -104,6 +101,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_bindir}/nxtraverse
 %doc %{_datadir}/doc/NeXus/programs/
 %{_mandir}/man1/
+
+%post -p /sbin/ldconfig
+
+%postun -p /sbin/ldconfig
 
 %changelog
 * Thu Sep 15 2016 Stuart Campbell <sic@fedoraproject.org> - 4.4.3-2
