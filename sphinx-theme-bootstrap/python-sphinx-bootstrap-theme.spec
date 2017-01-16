@@ -24,7 +24,12 @@ Summary:        %{common_sum}
 License:        MIT
 URL:            http://ryan-roemer.github.com/%{srcname}
 Source0:        https://files.pythonhosted.org/packages/source/s/%{srcname}/%{srcname}-%{version}.tar.gz
+
 BuildArch:      noarch
+
+%if 0%{?rhel} && 0%{?rhel} <= 6
+BuildRequires:  epel-rpm-macros
+%endif
 
 %description
 %{common_desc}
