@@ -13,21 +13,28 @@ of different Bootswatch CSS themes.
 %{?!python2_version:%global python2_version %{python_version}}
 
 %if 0%{?fedora} >= 13 || 0%{?rhel} >= 8
-  %global with_py3 1
+%global with_py3 1
 %endif # 0#{?fedora} >= 13 || 0#{?rhel} >= 8
+
+%if 0%{?fedora} >= 21 || 0%{?rhel} >= 7
+%global with_web 1
+%endif # 0#{?fedora} >= 21 || 0#{?rhel} >= 7
+
 
 Name:           python-%{srcname}
 Version:        0.4.13
 Release:        1%{?dist}
 Summary:        %{common_sum}
 
-License:        MIT
+License:        MIT and ASL 2.0
 URL:            http://ryan-roemer.github.com/%{srcname}
 Source0:        https://files.pythonhosted.org/packages/source/s/%{srcname}/%{srcname}-%{version}.tar.gz
 
 BuildArch:      noarch
 
-%if 0%{?rhel} && 0%{?rhel} <= 6
+%if 0%{?with_web}
+BuildRequires:  web-assets-devel
+%else
 BuildRequires:  epel-rpm-macros
 %endif
 
@@ -41,7 +48,10 @@ Summary:        %{common_sum}
 BuildRequires:  python-setuptools
 BuildRequires:  python2-devel
 
+%if 0%{?with_web}
+Requires:       glyphicons-halflings-fonts
 Requires:       js-jquery1
+%endif
 Requires:       python-sphinx
 
 %{?python_provide:%python_provide python2-%{srcname}}
@@ -57,7 +67,10 @@ Summary:        %{common_sum}
 BuildRequires:  python3-devel
 BuildRequires:  python3-setuptools
 
+%if 0%{?with_web}
+Requires:       glyphicons-halflings-fonts
 Requires:       js-jquery1
+%endif
 Requires:       python3-sphinx
 
 %{?python_provide:%python_provide python3-%{srcname}}
@@ -81,21 +94,22 @@ Requires:       python3-sphinx
 %py2_install
 %{?with_py3:%py3_install}
 
-# Remove the bundled JQuery
-%{__rm} -rf %{buildroot}%{python2_sitelib}/sphinx_bootstrap_theme/bootstrap/static/js/jquery-1.11.0.min.js \
-%{?with_py3:%{buildroot}%{python3_sitelib}/sphinx_bootstrap_theme/bootstrap/static/js/jquery-1.11.0.min.js} \
-;
-
-# Now link to the central jquery
+# Remove the bundled JQuery and fonts and link against webasset.
+%if 0%{?with_web}
 for d in %{python2_sitelib} %{?with_py3:%{python3_sitelib}}; do
-  %{__ln_s} -f %{_datadir}/javascript/jquery/1.11.2/jquery.min.js \
+  %{__rm} -f %{buildroot}${d}/sphinx_bootstrap_theme/bootstrap/static/js/jquery-1.11.0.min.js
+  %{__ln_s} -f %{_webassetdir}/jquery/1/jquery.min.js \
     %{buildroot}${d}/sphinx_bootstrap_theme/bootstrap/static/js/jquery-1.11.0.min.js
+  %{__rm} -f %{buildroot}${d}/sphinx_bootstrap_theme/bootstrap/static/bootstrap-3.3.6/fonts/glyphicons-halflings-regular.ttf
+  %{__ln_s} -f %{_datadir}/fonts/glyphicons-halflings/glyphicons-halflings-regular.ttf \
+    %{buildroot}${d}/sphinx_bootstrap_theme/bootstrap/static/bootstrap-3.3.6/fonts/glyphicons-halflings-regular.ttf
 done
+%endif
 
 
 %files -n python2-%{srcname}
 %license LICENSE.txt
-%doc PKG-INFO HISTORY.* README.* TODO.*
+%doc PKG-INFO *.rst
 %{python2_sitelib}/sphinx_bootstrap_theme
 %{python2_sitelib}/sphinx_bootstrap_theme-%{version}-py%{python2_version}.egg-info
 
@@ -103,7 +117,7 @@ done
 %if 0%{?with_py3}
 %files -n python3-%{srcname}
 %license LICENSE.txt
-%doc PKG-INFO HISTORY.* README.* TODO.*
+%doc PKG-INFO *.rst
 %{python3_sitelib}/sphinx_bootstrap_theme
 %{python3_sitelib}/sphinx_bootstrap_theme-%{version}-py%{python3_version}.egg-info
 %endif
