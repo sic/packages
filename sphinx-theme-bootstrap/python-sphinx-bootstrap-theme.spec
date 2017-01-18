@@ -23,7 +23,7 @@ of different Bootswatch CSS themes.
 
 Name:           python-%{srcname}
 Version:        0.4.13
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        %{common_sum}
 
 License:        MIT and ASL 2.0
