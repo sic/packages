@@ -8,11 +8,7 @@
 %global run_tests               0
 
 # On RHEL 7 onwards, don't build with wx:
-%if 0%{?rhel} >= 7
-%global with_wx 0
-%else
 %global with_wx 1
-%endif
 
 # On Fedora 21 onwards, enable Qt5 backend:
 %if 0%{?fedora}
@@ -49,7 +45,7 @@
 Name:           python-matplotlib
 Version:        1.5.3
 #Release:        0.1%{?rctag:.%{rctag}}%{?dist}
-Release:        0.1%{?dist}
+Release:        0.2%{?dist}
 Summary:        Python 2D plotting library
 Group:          Development/Libraries
 # qt4_editor backend is MIT
