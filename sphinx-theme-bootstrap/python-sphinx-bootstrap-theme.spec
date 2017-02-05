@@ -16,10 +16,9 @@ of different Bootswatch CSS themes.
 %global with_py3 1
 %endif # 0#{?fedora} >= 13 || 0#{?rhel} >= 8
 
-%if 0%{?fedora} >= 21 || 0%{?rhel} >= 7
+%if 0%{?fedora} >= 21 || 0%{?rhel} >= 8
 %global with_web 1
-%endif # 0#{?fedora} >= 21 || 0#{?rhel} >= 7
-
+%endif # 0#{?fedora} >= 21 || 0#{?rhel} >= 8
 
 Name:           python-%{srcname}
 Version:        0.4.13
