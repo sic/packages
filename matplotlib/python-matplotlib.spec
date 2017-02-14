@@ -7,7 +7,7 @@
 %global with_html               0
 %global run_tests               0
 
-# On RHEL 7 onwards, don't build with wx:
+# Whether or not to include is somewhat controversial
 %global with_wx 1
 
 # On Fedora 21 onwards, enable Qt5 backend:
