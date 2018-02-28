@@ -13,14 +13,13 @@
 %endif # 0#{?fedora} >= 13 || 0#{?rhel} >= 8
 
 Name: 		%{srcname}
-Version: 	4.2.1
+Version: 	4.4
 Release:        1%{?dist}
 Summary:        %{common_summary}
 
 License: 	Python 2.0
 URL:		https://bitbucket.org/jamesrhester/pycifrw/overview
-Source0: 	https://pypi.python.org/packages/01/68/b75a924883f1b1b7b3c2d0c1fdc2cede03d255ce5287c4d9d8d17f6d517e/%{srcname}-%{version}-py3.tar.gz
-
+Source0: 	https://pypi.python.org/packages/4c/ab/b4842d450c06104c3f037c391a1ac5165e677b1226b44bc47a0b9cbc1bd3/%{srcname}-%{version}.tar.gz
 
 %description
 %{common_desc}
@@ -84,5 +83,8 @@ Requires:       python3-numpy
 %endif
 
 %changelog
+* Wed Feb 28 2018 Martyn Gigg <martyn.gigg@stfc.ac.uk> - 4.4-1
+- Update version to 4.4
+
 * Wed Feb 01 2017 Stuart Campbell <sic@fedoraproject.org> - 4.2.1-1
 - Initial package
