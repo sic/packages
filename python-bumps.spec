@@ -5,7 +5,7 @@
 
 Summary: %{summary}
 Name: python-%{srcname}
-Version: 0.7.14
+Version: 0.7.16
 Release: %{release}%{?dist}
 #ource0: %{pypi_source} - missing LICENSE and test files
 Source0: https://github.com/bumps/bumps/archive/v%{version}.tar.gz
