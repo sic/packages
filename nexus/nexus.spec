@@ -1,6 +1,9 @@
+# Undefine CMake in-source builds in order to be consistent with f33+
+%undefine __cmake_in_source_build
+
 Name:           nexus
 Version:        4.4.3
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Libraries and tools for the NeXus scientific data file format
 
 License:        LGPLv2+
@@ -11,15 +14,19 @@ Source0:        https://github.com/nexusformat/code/archive/v4.4.3.tar.gz
 Patch0:         nexus-fix-version.patch
 # Remove an additional flag that doesn't work in the EL6 version of gfortran
 Patch1:         nexus-el6-fortran-flags.patch
+# Back port fix from master branch
+Patch2:         nexus-fix-nxtranslate-xml.patch
 
 BuildRequires:  cmake
+BuildRequires:	gcc
+BuildRequires:  gcc-c++
 BuildRequires:  hdf5-devel
 BuildRequires:  hdf-devel
+BuildRequires:  make
 BuildRequires:  mxml-devel
 BuildRequires:  gcc-gfortran
 BuildRequires:  python-docutils
 
-Requires:       libgfortran
 Requires:       hdf5
 Requires:       hdf
 Requires:       mxml
@@ -28,14 +35,13 @@ Requires:       mxml
 %description
 NeXus is a common data format for neutron, x-ray, and muon science. This
 package provides tools and libraries for accessing these files.  The on disk
-represenation is based upon either hdf4, hdf5 or xml
+representation is based upon either HDF4, HDF5 or XML
 
 %package        devel
 Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       hdf5-devel
 Requires:       hdf-devel
-Requires:       mxml-devel
 
 %description    devel
 The %{name}-devel package contains header files for
@@ -64,27 +70,23 @@ BuildRequires:  readline-devel
 %patch1 -p1 -b .el6-flags
 %endif
 
+%patch2 -p1 -b .nxtranslate
 
 %build
 %cmake \
        -DENABLE_HDF5=1 \
        -DENABLE_HDF4=1 \
-       -DENABLE_MXML=1 \
        -DENABLE_CXX=1 \
-       -DENABLE_FORTRAN77=1 \
-       -DENABLE_FORTRAN90=1 \
-       -DENABLE_JAVA=0 \
-       -DENABLE_APPS=1
-make %{?_smp_mflags}
+       -DENABLE_APPS=1 .
+%cmake_build
 
 %install
-%make_install
+%cmake_install
 
 %files
 %doc %{_datadir}/doc/NeXus/README.doc
 %{_datadir}/doc/NeXus/
 %{_libdir}/libNeXus*
-%{_libdir}/nexus/
 
 %files devel
 %{_includedir}/nexus/
@@ -94,8 +96,6 @@ make %{?_smp_mflags}
 %{_bindir}/nxbrowse
 %{_bindir}/nxconvert
 %{_bindir}/nxdir
-%{_bindir}/nxdump
-%{_bindir}/nxingest
 %{_bindir}/nxsummary
 %{_bindir}/nxtranslate
 %{_bindir}/nxtraverse
@@ -107,6 +107,9 @@ make %{?_smp_mflags}
 %postun -p /sbin/ldconfig
 
 %changelog
+* Sat Aug 02 2020 Stuart Campbell <sic@fedoraproject.org> - 4.4.3-3
+- Removed Fortran bindings, added nxtranslate XML fix
+
 * Thu Sep 15 2016 Stuart Campbell <sic@fedoraproject.org> - 4.4.3-2
 - Added patch to fix version number
 
