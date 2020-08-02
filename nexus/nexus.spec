@@ -3,12 +3,13 @@
 
 Name:           nexus
 Version:        4.4.3
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Libraries and tools for the NeXus scientific data file format
 
-License:        LGPLv2+
+# The entire source code is GPLv2+ except nxdir which is MIT
+License:        LGPLv2+ and MIT
 URL:            http://www.nexusformat.org/
-Source0:        https://github.com/nexusformat/code/archive/v4.4.3.tar.gz
+Source0:        https://github.com/nexusformat/code/archive/v%{version}/code-v%{version}.tar.gz
 # Fix the version reported by the library
 #   (see https://github.com/nexusformat/code/issues/437)
 Patch0:         nexus-fix-version.patch
@@ -16,15 +17,16 @@ Patch0:         nexus-fix-version.patch
 Patch1:         nexus-el6-fortran-flags.patch
 # Back port fix from master branch
 Patch2:         nexus-fix-nxtranslate-xml.patch
+# Add the license file 
+#   (see https://github.com/nexusformat/code/issues/472)
+Patch3:         nexus-add-license.patch
 
 BuildRequires:  cmake
 BuildRequires:	gcc
-BuildRequires:  gcc-c++
+BuildRequires:  gcc-c++ 
 BuildRequires:  hdf5-devel
 BuildRequires:  hdf-devel
 BuildRequires:  make
-BuildRequires:  mxml-devel
-BuildRequires:  gcc-gfortran
 BuildRequires:  python-docutils
 
 Requires:       hdf5
@@ -53,8 +55,8 @@ Summary:        Applications for reading and writing NeXus files.
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       libxml2
 Requires:       readline
-BuildRequires:  libxml2-devel
-BuildRequires:  readline-devel
+BuildRequires:  pkgconfig(libxml-2.0)
+BuildRequires:  pkgconfig(readline)
 
 
 %description    tools
@@ -84,8 +86,8 @@ BuildRequires:  readline-devel
 %cmake_install
 
 %files
+%license COPYING
 %doc %{_datadir}/doc/NeXus/README.doc
-%{_datadir}/doc/NeXus/
 %{_libdir}/libNeXus*
 
 %files devel
@@ -95,19 +97,27 @@ BuildRequires:  readline-devel
 %files tools
 %{_bindir}/nxbrowse
 %{_bindir}/nxconvert
-%{_bindir}/nxdir
 %{_bindir}/nxsummary
 %{_bindir}/nxtranslate
 %{_bindir}/nxtraverse
-%doc %{_datadir}/doc/NeXus/programs/
-%{_mandir}/man1/
+%{_mandir}/man1/nxbrowse.1.gz
+%{_mandir}/man1/nxconvert.1.gz 
+%{_mandir}/man1/nxsummary.1.gz
+# MIT
+%license %{_datadir}/doc/NeXus/programs/nxdir/LICENSE
+%doc %{_datadir}/doc/NeXus/programs/nxdir/CHANGES
+%doc %{_datadir}/doc/NeXus/programs/nxdir/README
+%doc %{_datadir}/doc/NeXus/programs/nxdir/TODO
+%{_bindir}/nxdir
+%{_mandir}/man1/nxdir.1.gz  
 
-%post -p /sbin/ldconfig
 
-%postun -p /sbin/ldconfig
 
 %changelog
-* Sat Aug 02 2020 Stuart Campbell <sic@fedoraproject.org> - 4.4.3-3
+* Sun Aug 02 2020 Stuart Campbell <sic@fedoraproject.org> - 4.4.3-4
+- Added License file, changes from package review
+
+* Sun Aug 02 2020 Stuart Campbell <sic@fedoraproject.org> - 4.4.3-3
 - Removed Fortran bindings, added nxtranslate XML fix
 
 * Thu Sep 15 2016 Stuart Campbell <sic@fedoraproject.org> - 4.4.3-2
