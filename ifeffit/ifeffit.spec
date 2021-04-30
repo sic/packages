@@ -7,6 +7,9 @@ License:        BSD and GPLv2
 URL:            https://cars9.uchicago.edu/ifeffit/
 Source0:        https://github.com/newville/ifeffit/archive/refs/tags/1.2.13.tar.gz
 
+# Fix the locations to add the standard library path
+Patch0:         iconf_pgplot_fix_pgdirs.patch
+
 BuildRequires:  gcc-gfortran
 BuildRequires:  readline-devel
 BuildRequires:	make
