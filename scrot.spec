@@ -19,7 +19,7 @@ loaders of imlib2.
 
 
 %prep
-%setup -q
+%autosetup
 
 %build
 meson setup build --prefix=%{buildroot}/%{_prefix}
