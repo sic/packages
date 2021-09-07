@@ -1,7 +1,7 @@
 Name:           ifeffit
 Version:        1.2.13
 Release:        2%{?dist}
-Summary:        IFEFFIT is an interactive program for XAFS analysis
+Summary:        An interactive program for XAFS analysis
 
 License:        BSD and GPLv2
 URL:            https://cars9.uchicago.edu/ifeffit/
@@ -17,13 +17,16 @@ BuildRequires:  make
 Requires:       readline
 
 %description
-IFEFFIT is an interactive program for XAFS analysis. It combines the high-quality analysis algorithms
-of AUTOBK and FEFFIT with graphical display of XAFS data and general data manipulation. IFEFFIT comes
-as a command-line program, but the underlying functionality is available as a programming library.
-The IFEFFIT library can be used from C, Fortran, Tcl, Perl, and Python. This allows a variety of user
-interfaces (both graphical and non-graphical) to be written around IFEFFIT. Currently, three graphical
-user interfaces: G.I.FEFFIT, ATHENA/ARTEMIS, and SIXPACK are built on the underlying IFEFFIT library.
-IFEFFIT and all three GUIs are under active development, but are fairly well tested and ready for use.
+IFEFFIT is an interactive program for XAFS analysis. It combines the
+high-quality analysis algorithms of AUTOBK and FEFFIT with graphical
+display of XAFS data and general data manipulation. IFEFFIT comes as
+a command-line program, but the underlying functionality is available
+as a programming library. The IFEFFIT library can be used from C, Fortran,
+Tcl, Perl, and Python. This allows a variety of user interfaces (both
+graphical and non-graphical) to be written around IFEFFIT. Currently,
+three graphical user interfaces: G.I.FEFFIT, ATHENA/ARTEMIS, and SIXPACK
+are built on the underlying IFEFFIT library. IFEFFIT and all three GUIs
+are under active development, but are fairly well tested and ready for use.
 
 %prep
 %autosetup
