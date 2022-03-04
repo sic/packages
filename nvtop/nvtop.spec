@@ -11,7 +11,8 @@ Summary:        NVIDIA GPUs htop like monitoring tool
 
 License:        BSD
 URL:            https://github.com/Syllo/nvtop
-Source0:        https://github.com/Syllo/nvtop/archive/%v{version}/nvtop-v%{version}.tar.gz
+Source0:        https://github.com/Syllo/nvtop/archive/refs/tags/%{version}.tar.gz
+
 
 BuildRequires:  cmake
 BuildRequires:  ncurses-devel
@@ -33,8 +34,9 @@ multiple GPUs and print information about them in a htop familiar way.
   
 %files
 %license LICENSE
-%{_bindir}/arpwatch
-%{_unitdir}/arpwatch.service
+
+%{_bindir}/nvtop
+%{_mandir}/man1/nvtop.1.gz
 
 %changelog
 * Thu Mar 03 2022 Stuart Campbell <scampbell@bnl.gov> 1.2.2-1
