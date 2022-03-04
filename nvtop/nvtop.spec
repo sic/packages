@@ -9,7 +9,7 @@ Version:        1.2.2
 Release:        1%{?dist}
 Summary:        NVIDIA GPUs htop like monitoring tool 
 
-License:        BSD
+License:        GPLv3
 URL:            https://github.com/Syllo/nvtop
 Source0:        https://github.com/Syllo/nvtop/archive/refs/tags/%{version}.tar.gz
 
