@@ -1,6 +1,6 @@
 Name:           perl-Encoding-FixLatin
 Version:        1.04
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Takes mixed encoding input and produces UTF-8 output
 License:        GPL+ or Artistic
 Group:          Development/Libraries
@@ -8,6 +8,7 @@ URL:            http://search.cpan.org/dist/Encoding-FixLatin/
 Source0:        http://www.cpan.org/authors/id/G/GR/GRANTM/Encoding-FixLatin-%{version}.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      noarch
+BuildRequires:  make
 BuildRequires:  perl(base)
 BuildRequires:  perl(ExtUtils::MakeMaker)
 BuildRequires:  perl(Test::More) >= 0.90
@@ -53,6 +54,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 
 %changelog
+* Tue Jun  7 2022 Stuart Campbell (scampbell@bnl.gov) 1.04-3
+- Added make to Build Dependencies
+
 * Mon May  3 2021 Stuart Campbell (scampbell@bnl.gov) 1.04-2
 - Added Provides info
 
