@@ -1,6 +1,6 @@
 Name:           perl-Math-Random
 Version:        0.72
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        Random Number Generators
 License:        CHECK(Distributable)
 Group:          Development/Libraries
@@ -10,6 +10,7 @@ BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires:  make
 BuildRequires:  perl-generators
 BuildRequires:  perl(ExtUtils::MakeMaker)
+BuildRequires:  perl(ExtUtils::Typemap)
 Requires:       perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $version))
 Provides:       perl(Math::Random)
 
@@ -47,6 +48,9 @@ make test
 %{_mandir}/man3/*
 
 %changelog
+* Thu Jun 16 2022 Stuart Campbell <scampbell@bnl.gov> - 0.72-5
+- Add ExtUtils::Typemap to build deps
+
 * Thu Jun 16 2022 Stuart Campbell <scampbell@bnl.gov> - 0.72-4
 - Add make to build dependencies
 
