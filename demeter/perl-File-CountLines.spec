@@ -1,6 +1,6 @@
 Name:           perl-File-CountLines
 Version:        0.0.3
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Efficiently count the number of line breaks in a file
 License:        GPL+ or Artistic
 Group:          Development/Libraries
@@ -8,14 +8,15 @@ URL:            http://search.cpan.org/dist/File-CountLines/
 Source0:        http://www.cpan.org/authors/id/M/MO/MORITZ/File-CountLines-v%{version}.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      noarch
-BuildRequires:  perl(base)
+BuildRequires:  perl-generators
+BuildRequires:  perl-interpreter
 BuildRequires:  perl(Carp)
 BuildRequires:  perl(charnames) >= 1.01
 BuildRequires:  perl(Exporter) >= 5.57
 BuildRequires:  perl(Module::Build)
 BuildRequires:  perl(strict)
-BuildRequires:	perl(Test::More::UTF8)
-BuildRequires:	perl(Test::Simple)
+BuildRequires:  perl(Test::More::UTF8)
+BuildRequires:  perl(Test::Simple)
 BuildRequires:  perl(warnings)
 Requires:       perl(Carp)
 Requires:       perl(charnames) >= 1.01
@@ -48,9 +49,6 @@ find $RPM_BUILD_ROOT -depth -type d -exec rmdir {} 2>/dev/null \;
 %check
 ./Build test
 
-%clean
-rm -rf $RPM_BUILD_ROOT
-
 %files
 %defattr(-,root,root,-)
 %doc Changes README
@@ -58,6 +56,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 
 %changelog
+* Thu Jun 16 2022 Stuart Campbell (scampbell@bnl.gov) 0.0.3-3
+- Added perl-interpreter and perl-generators to build dependencies
+
 * Mon May  3 2021 Stuart Campbell (scampbell@bnl.gov) 0.0.3-2
 - Add Provides info
 

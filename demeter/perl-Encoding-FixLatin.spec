@@ -1,6 +1,6 @@
 Name:           perl-Encoding-FixLatin
 Version:        1.04
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Takes mixed encoding input and produces UTF-8 output
 License:        GPL+ or Artistic
 Group:          Development/Libraries
@@ -9,7 +9,7 @@ Source0:        http://www.cpan.org/authors/id/G/GR/GRANTM/Encoding-FixLatin-%{v
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      noarch
 BuildRequires:  make
-BuildRequires:  perl(base)
+BuildRequires:  perl-generators
 BuildRequires:  perl(ExtUtils::MakeMaker)
 BuildRequires:  perl(Test::More) >= 0.90
 #Requires:       perl(Encoding::FixLatin::XS) >= 1.00
@@ -42,9 +42,6 @@ find $RPM_BUILD_ROOT -depth -type d -exec rmdir {} 2>/dev/null \;
 %check
 make test
 
-%clean
-rm -rf $RPM_BUILD_ROOT
-
 %files
 %defattr(-,root,root,-)
 %doc Changes dist.ini LICENSE META.json README
@@ -54,6 +51,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 
 %changelog
+* Thu Jun 16 2022 Stuart Campbell (scampbell@bnl.gov) 1.04-4
+- Added perl-generators to build dependencies
+
 * Tue Jun  7 2022 Stuart Campbell (scampbell@bnl.gov) 1.04-3
 - Added make to Build Dependencies
 

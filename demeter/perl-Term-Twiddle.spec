@@ -1,6 +1,6 @@
 Name:           perl-Term-Twiddle
 Version:        2.73
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Twiddles a thingy while-u-wait
 License:        CHECK(Distributable)
 Group:          Development/Libraries
@@ -8,9 +8,10 @@ URL:            http://search.cpan.org/dist/Term-Twiddle/
 Source0:        http://www.cpan.org/authors/id/S/SC/SCOTTW/Term-Twiddle-%{version}.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      noarch
-BuildRequires:	make
+BuildRequires:  make
+BuildRequires:  perl-generators
 BuildRequires:  perl(ExtUtils::MakeMaker)
-BuildRequires:	perl(Test)
+BuildRequires:  perl(Test)
 BuildRequires:  perl(Time::HiRes) >= 1.3
 Requires:       perl(Time::HiRes) >= 1.3
 Requires:       perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $version))
@@ -40,12 +41,6 @@ find $RPM_BUILD_ROOT -depth -type d -exec rmdir {} 2>/dev/null \;
 
 %{_fixperms} $RPM_BUILD_ROOT/*
 
-#%check
-#make test
-
-%clean
-rm -rf $RPM_BUILD_ROOT
-
 %files
 %defattr(-,root,root,-)
 %doc Changes README
@@ -53,6 +48,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 
 %changelog
+* Thu Jun 16 2022 Stuart Campbell (scampbell@bnl.gov) 2.73-3
+- Added perl-generators to build dependencies
+
 * Tue May  4 2021 Stuart Campbell (scampbell@bnl.gov) 2.73-2
 - Added provides info
 
