@@ -1,12 +1,13 @@
 Name:           perl-Math-Random
 Version:        0.72
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Random Number Generators
 License:        CHECK(Distributable)
 Group:          Development/Libraries
 URL:            http://search.cpan.org/dist/Math-Random/
 Source0:        http://www.cpan.org/authors/id/G/GR/GROMMEL/Math-Random-%{version}.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+BuildRequires:  perl-generators
 BuildRequires:  perl(ExtUtils::MakeMaker)
 Requires:       perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $version))
 Provides:       perl(Math::Random)
@@ -37,9 +38,6 @@ find $RPM_BUILD_ROOT -depth -type d -exec rmdir {} 2>/dev/null \;
 %check
 make test
 
-%clean
-rm -rf $RPM_BUILD_ROOT
-
 %files
 %defattr(-,root,root,-)
 %doc Changes Index README
@@ -48,6 +46,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 
 %changelog
+* Thu Jun 16 2022 Stuart Campbell <scampbell@bnl.gov> - 0.72-3
+- Added perl-generators to build dependencies
+
 * Mon May  3 2021 Stuart Campbell (scampbell@bnl.gov) 0.72-2
 - Added Provides info
 
