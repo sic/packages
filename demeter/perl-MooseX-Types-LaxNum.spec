@@ -1,6 +1,6 @@
 Name:           perl-MooseX-Types-LaxNum
 Version:        0.04
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        LaxNum type which provides the loose behavior of Moose's Num pre-2.10
 License:        GPL+ or Artistic
 Group:          Development/Libraries
@@ -8,6 +8,7 @@ URL:            http://search.cpan.org/dist/MooseX-Types-LaxNum/
 Source0:        http://www.cpan.org/authors/id/S/SW/SWEETKID/MooseX-Types-LaxNum-%{version}.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      noarch
+BuildRequires:  perl-generators
 BuildRequires:  perl(ExtUtils::MakeMaker)
 BuildRequires:  perl(File::Find)
 BuildRequires:  perl(File::Temp)
@@ -50,9 +51,6 @@ find $RPM_BUILD_ROOT -depth -type d -exec rmdir {} 2>/dev/null \;
 %check
 make test
 
-%clean
-rm -rf $RPM_BUILD_ROOT
-
 %files
 %defattr(-,root,root,-)
 %doc dist.ini LICENSE META.json README
@@ -60,6 +58,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 
 %changelog
+* Thu Jun 16 2022 Stuart Campbell <scampbell@bnl.gov> - 0.04-3
+- Added perl-generators to build dependencies
+
 * Mon May  3 2021 Stuart Campbell (scampbell@bnl.gov) 0.04-2
 - Added Provides info
 
