@@ -1,6 +1,6 @@
 Name:           perl-Term-Sk
 Version:        0.18
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Perl extension for displaying a progress indicator on a terminal
 License:        GPL+ or Artistic
 Group:          Development/Libraries
@@ -8,6 +8,7 @@ URL:            http://search.cpan.org/dist/Term-Sk/
 Source0:        http://www.cpan.org/authors/id/K/KE/KEICHNER/Term-Sk-%{version}.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      noarch
+BuildRequires:  make
 BuildRequires:  perl-generators
 BuildRequires:  perl(Exporter)
 BuildRequires:  perl(ExtUtils::MakeMaker)
@@ -54,6 +55,9 @@ make test
 %{_mandir}/man3/*
 
 %changelog
+* Thu Jun 16 2022 Stuart Campbell <scampbell@bnl.gov> - 0.18-4
+- Add make to build dependencies
+
 * Thu Jun 16 2022 Stuart Campbell <scampbell@bnl.gov> - 0.18-3
 - Added perl-generators to build dependencies
 

@@ -1,6 +1,6 @@
 Name:           perl-PDL-Stats
 Version:        0.76
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Collection of statistics modules in Perl Data Language, with a quick-start guide for non-PDL people
 License:        GPL+ or Artistic
 Group:          Development/Libraries
@@ -8,6 +8,7 @@ URL:            http://search.cpan.org/dist/PDL-Stats/
 Source0:        http://www.cpan.org/authors/id/E/ET/ETJ/PDL-Stats-%{version}.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      x86_64
+BuildRequires:  make
 BuildRequires:  perl-generators
 BuildRequires:  perl(ExtUtils::MakeMaker)
 BuildRequires:  perl(PDL::Core)
@@ -54,6 +55,9 @@ make test
 %{_mandir}/man3/*
 
 %changelog
+* Thu Jun 16 2022 Stuart Campbell <scampbell@bnl.gov> - 0.76-4
+- Add make to build dependencies
+
 * Thu Jun 16 2022 Stuart Campbell <scampbell@bnl.gov> - 0.76-3
 - Added perl-generators to build dependencies
 
