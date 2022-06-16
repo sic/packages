@@ -1,6 +1,6 @@
 Name:           perl-Math-Combinatorics
 Version:        0.09
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Perform combinations and permutations on lists
 License:        CHECK(GPL+ or Artistic)
 Group:          Development/Libraries
@@ -9,12 +9,14 @@ Source0:        http://www.cpan.org/authors/id/A/AL/ALLENDAY/Math-Combinatorics-
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      noarch
 BuildRequires:  make
+BuildRequires:  perl-generators
+BuildRequires:  perl-interpreter
 BuildRequires:  perl(base)
 BuildRequires:  perl(ExtUtils::MakeMaker)
-BuildRequires:	perl(Test::More::UTF8)
-BuildRequires:	perl(Test::Simple)
+BuildRequires:  perl(Test::More::UTF8)
+BuildRequires:  perl(Test::Simple)
 Requires:       perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $version))
-Provides:	perl(Math::Combinatorics)
+Provides:       perl(Math::Combinatorics)
 
 %description
 Combinatorics is the branch of mathematics studying the enumeration,
@@ -42,9 +44,6 @@ find $RPM_BUILD_ROOT -depth -type d -exec rmdir {} 2>/dev/null \;
 %check
 make test
 
-%clean
-rm -rf $RPM_BUILD_ROOT
-
 %files
 %defattr(-,root,root,-)
 %doc Changes README
@@ -52,7 +51,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 
 %changelog
-* Sun May  2 2021 Stuart Campbell (scampbell@bnl.gov) 0.09-2
+* Thu Jun 16 2022 Stuart Campbell (scampbell@bnl.gov) 0.09-3
+- Added perl-generators and perl-interpreter
+
+* Sun May 02 2021 Stuart Campbell (scampbell@bnl.gov) 0.09-2
 - Added Provides
 
 * Sat Apr 10 2021 Stuart Campbell (scampbell@bnl.gov) 0.09-1
