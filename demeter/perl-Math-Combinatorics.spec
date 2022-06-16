@@ -11,7 +11,6 @@ BuildArch:      noarch
 BuildRequires:  make
 BuildRequires:  perl-generators
 BuildRequires:  perl-interpreter
-BuildRequires:  perl(base)
 BuildRequires:  perl(ExtUtils::MakeMaker)
 BuildRequires:  perl(Test::More::UTF8)
 BuildRequires:  perl(Test::Simple)
