@@ -1,14 +1,18 @@
 Name:           perl-Math-Random
 Version:        0.72
-Release:        5%{?dist}
+Release:        6%{?dist}
 Summary:        Random Number Generators
 License:        CHECK(Distributable)
 Group:          Development/Libraries
 URL:            http://search.cpan.org/dist/Math-Random/
 Source0:        http://www.cpan.org/authors/id/G/GR/GROMMEL/Math-Random-%{version}.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+BuildRequires:  gcc
 BuildRequires:  make
+BuildRequires:  perl-devel
 BuildRequires:  perl-generators
+BuildRequires:  perl-interpreter
+BuildRequires:  perl(AutoLoader)
 BuildRequires:  perl(ExtUtils::MakeMaker)
 BuildRequires:  perl(ExtUtils::Typemap)
 Requires:       perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $version))
@@ -48,6 +52,9 @@ make test
 %{_mandir}/man3/*
 
 %changelog
+* Fri Jun 17 2022 Stuart Campbell - 0.72-6
+- Added some more build dependencies and AutoLoader
+
 * Thu Jun 16 2022 Stuart Campbell <scampbell@bnl.gov> - 0.72-5
 - Add ExtUtils::Typemap to build deps
 
