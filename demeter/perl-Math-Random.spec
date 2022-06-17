@@ -1,6 +1,6 @@
 Name:           perl-Math-Random
 Version:        0.72
-Release:        6%{?dist}
+Release:        7%{?dist}
 Summary:        Random Number Generators
 License:        CHECK(Distributable)
 Group:          Development/Libraries
@@ -14,7 +14,6 @@ BuildRequires:  perl-generators
 BuildRequires:  perl-interpreter
 BuildRequires:  perl(AutoLoader)
 BuildRequires:  perl(ExtUtils::MakeMaker)
-BuildRequires:  perl(ExtUtils::Typemap)
 Requires:       perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $version))
 Provides:       perl(Math::Random)
 
@@ -52,7 +51,10 @@ make test
 %{_mandir}/man3/*
 
 %changelog
-* Fri Jun 17 2022 Stuart Campbell - 0.72-6
+* Fri Jun 17 2022 Stuart Campbell <scampbell@bnl.gov> - 0.72-7
+- Remove ExtUtils::Typemap for build dependencies
+
+* Fri Jun 17 2022 Stuart Campbell <scampbell@bnl.gov> - 0.72-6
 - Added some more build dependencies and AutoLoader
 
 * Thu Jun 16 2022 Stuart Campbell <scampbell@bnl.gov> - 0.72-5
