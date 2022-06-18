@@ -1,6 +1,6 @@
 Name:           demeter
 Version:        0.9.26
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        A comprehensive XAS data analysis system using Feff and Ifeffit or Larch
 
 License:        Artistic  
@@ -8,12 +8,13 @@ URL:            http://bruceravel.github.io/demeter/
 Source0:        https://github.com/bruceravel/demeter/archive/refs/heads/master.tar.gz
 
 Patch0:         demeter-remove-fityk-declaration.patch
+Patch1:         demeter-ifeffitwrap-compiler-errors.patch
 
 BuildArch:      x86_64
 BuildRequires:  gcc-gfortran
 BuildRequires:  gnuplot
 BuildRequires:  ifeffit
-BuildRequires:  perl
+BuildRequires:  perl-interpreter
 BuildRequires:  perl-devel
 BuildRequires:  perl-generators
 BuildRequires:  perl(Module::Build)
@@ -23,12 +24,16 @@ BuildRequires:  perl(Config::INI)
 BuildRequires:  perl(Const::Fast)
 BuildRequires:  perl(DateTime)
 BuildRequires:  perl(Encoding::FixLatin)
+BuildRequires:  perl(ExtUtils::CBuilder)
 BuildRequires:  perl(File::Copy::Recursive)
 BuildRequires:  perl(File::CountLines)
+BuildRequires:  perl(File::Monitor::Lite)
 BuildRequires:  perl(File::Slurper)
 BuildRequires:  perl(File::Touch)
 BuildRequires:  perl(Graph)
+BuildRequires:  perl(Graphics::GnuplotIF)
 BuildRequires:  perl(Heap)
+BuildRequires:  perl(IPC::Cmd)
 BuildRequires:  perl(JSON)
 BuildRequires:  perl(List::MoreUtils)
 BuildRequires:  perl(Math::Combinatorics)
@@ -49,9 +54,12 @@ BuildRequires:  perl(Regexp::Assemble)
 BuildRequires:  perl(Regexp::Common)
 BuildRequires:  perl(Spreadsheet::WriteExcel)
 BuildRequires:  perl(Statistics::Descriptive)
+BuildRequires:  perl(Term::Sk)
+BuildRequires:  perl(Term::Twiddle)
 BuildRequires:  perl(Text::Unidecode)
 BuildRequires:  perl(Tree::Simple)
 BuildRequires:  perl(Want)
+BuildRequires:  perl(Wx)
 BuildRequires:  perl(XMLRPC::Lite)
 BuildRequires:  perl(YAML::Tiny)
 Requires:  gnuplot
@@ -107,6 +115,7 @@ Process and analyze X-ray Absorption Spectroscopy data using Feff and either Lar
 %prep
 %setup -q -n %{name}-master
 %patch0 -p1 -b .fityk
+%patch1 -p1 -b .compiler_errors_ifeffitwrap
 
 %build
 # Remove OPTIMIZE=... from noarch packages (unneeded)
@@ -156,11 +165,15 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
-* Mon May  6 2021 Stuart Campbell <scampbell@bnl.gov>
+* Sat Jun 18 2022 Stuart Campbell (scampbell@bnl.gov) - 0.9.26-4
+- Add patch to fix compiler errors
+- Add demeter dependencies to build deps
+
+* Mon May 03 2021 Stuart Campbell <scampbell@bnl.gov>
 - Added some missing dependencies
 
-* Mon May  3 2021 Stuart Campbell <scampbell@bnl.gov>
+* Mon May 03 2021 Stuart Campbell <scampbell@bnl.gov>
 - Apply patch to remove explicit fityk 
 
-* Mon May  3 2021 Stuart Campbell <scampbell@bnl.gov>
+* Mon May 03 2021 Stuart Campbell <scampbell@bnl.gov>
 - Initial Package

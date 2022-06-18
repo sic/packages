@@ -1,0 +1,27 @@
+diff --git a/lib/Demeter/PeakFit.pm b/lib/Demeter/PeakFit.pm
+index 0cc41ec9..b6981fe4 100644
+--- a/lib/Demeter/PeakFit.pm
++++ b/lib/Demeter/PeakFit.pm
+@@ -38,9 +38,7 @@ if ($Demeter::mode->ui eq 'screen') {
+ };
+ 
+ use vars qw($Fityk_exists);
+-$Fityk_exists = 1;
+-eval "use fityk.pm";
+-$Fityk_exists = 0 if $@;
++$Fityk_exists = 0;
+ 
+ has '+plottable'      => (default => 1);
+ has '+data'	      => (isa => Empty.'|Demeter::Data'); # (isa => Empty.'|Demeter::Data|Demeter::XES');
+diff --git a/lib/Demeter/PeakFit/Fityk.pm b/lib/Demeter/PeakFit/Fityk.pm
+index f6efae9d..08f42801 100644
+--- a/lib/Demeter/PeakFit/Fityk.pm
++++ b/lib/Demeter/PeakFit/Fityk.pm
+@@ -4,7 +4,6 @@ use Moose::Role;
+ use Demeter::StrTypes qw( FitykFunction );
+ 
+ use Scalar::Util qw(looks_like_number);
+-use fityk;
+ 
+ use vars qw($FITYK $RESPONSE);
+ $FITYK = fityk::Fityk->new;
