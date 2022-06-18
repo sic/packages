@@ -1,6 +1,6 @@
 Name:           perl-Pod-ProjectDocs
 Version:        0.53
-Release:        2%{?dist}
+Release:        4%{?dist}
 Summary:        Generates CPAN like project documents from pod
 License:        GPL+ or Artistic
 Group:          Development/Libraries
@@ -8,7 +8,9 @@ URL:            http://search.cpan.org/dist/Pod-ProjectDocs/
 Source0:        http://www.cpan.org/authors/id/M/MG/MGRUNER/Pod-ProjectDocs-%{version}.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      noarch
-BuildRequires:  perl(base)
+BuildRequires:  make
+BuildRequires:  perl-generators
+BuildRequires:  perl-interpreter
 BuildRequires:  perl(Carp)
 BuildRequires:  perl(ExtUtils::MakeMaker)
 BuildRequires:  perl(File::Basename)
@@ -67,9 +69,6 @@ find $RPM_BUILD_ROOT -depth -type d -exec rmdir {} 2>/dev/null \;
 %check
 make test
 
-%clean
-rm -rf $RPM_BUILD_ROOT
-
 %files
 %defattr(-,root,root,-)
 %doc Changes.md cpanfile dist.ini LICENSE META.json perlcriticrc Readme.md
@@ -79,7 +78,13 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 
 %changelog
-* Mon May  3 2021 Stuart Campbell (scampbell@bnl.gov) 0.53-2
+* Fri Jun 17 2022 Stuart Campbell - 0.53-4
+- Added perl-generators to build dependencies
+
+* Fri Jun 17 2022 Stuart Campbell - 0.53-3
+- Add make to build dependencies
+
+* Mon May 03 2021 Stuart Campbell (scampbell@bnl.gov) 0.53-2
 - Added Provides info
 
 * Sun Apr 11 2021 Stuart Campbell (scampbell@bnl.gov) 0.53-1
