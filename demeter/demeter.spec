@@ -1,6 +1,6 @@
 Name:           demeter
 Version:        0.9.26
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        A comprehensive XAS data analysis system using Feff and Ifeffit or Larch
 
 License:        Artistic  
@@ -25,6 +25,7 @@ BuildRequires:  perl(Const::Fast)
 BuildRequires:  perl(DateTime)
 BuildRequires:  perl(Encoding::FixLatin)
 BuildRequires:  perl(ExtUtils::CBuilder)
+BuildRequires:  perl(Fatal)
 BuildRequires:  perl(File::Copy::Recursive)
 BuildRequires:  perl(File::CountLines)
 BuildRequires:  perl(File::Monitor::Lite)
@@ -64,6 +65,7 @@ BuildRequires:  perl(XMLRPC::Lite)
 BuildRequires:  perl(YAML::Tiny)
 Requires:  gnuplot
 Requires:  ifeffit
+Requires:  perl(Archive::Zip)
 Requires:  perl(Capture::Tiny)
 Requires:  perl(Chemistry::Elements)
 Requires:  perl(Config::INI)
@@ -165,6 +167,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Tue Jun 21 2022 Stuart Campbell (scampbell@bnl.gov) - 0.9.26-5
+- Added Autodie/Fatal to build dependencies
+
 * Sat Jun 18 2022 Stuart Campbell (scampbell@bnl.gov) - 0.9.26-4
 - Add patch to fix compiler errors
 - Add demeter dependencies to build deps
