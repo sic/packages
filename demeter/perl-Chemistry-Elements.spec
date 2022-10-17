@@ -1,6 +1,6 @@
 Name:           perl-Chemistry-Elements
 Version:        1.074
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Perl extension for working with Chemical Elements
 License:        Artistic 2.0
 Group:          Development/Libraries
@@ -8,9 +8,11 @@ URL:            http://search.cpan.org/dist/Chemistry-Elements/
 Source0:        http://www.cpan.org/authors/id/B/BD/BDFOY/Chemistry-Elements-%{version}.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      noarch
-BuildRequires:  perl >= 0:5.010
+BuildRequires:  make
+BuildRequires:  perl-generators
+BuildRequires:  perl-interpreter
 BuildRequires:  perl(ExtUtils::MakeMaker)
-BuildRequires:  perl(Test::More) >= 1
+BuildRequires:  perl(Test::More)
 Requires:       perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $version))
 Provides:	perl(Chemistry::Elements)
 
@@ -39,9 +41,6 @@ find $RPM_BUILD_ROOT -depth -type d -exec rmdir {} 2>/dev/null \;
 %check
 make test
 
-%clean
-rm -rf $RPM_BUILD_ROOT
-
 %files
 %defattr(-,root,root,-)
 %doc Changes INSTALL.SKIP LICENSE META.json
@@ -49,6 +48,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 
 %changelog
+* Wed Jun 22 2022 Stuart Campbell (scampbell@bnl.gov) - 1.074-3
+- Added make, perl-generator and perl-interpreter to build deps
+
 * Mon May  3 2021 Stuart Campbell (scampbell@bnl.gov) 1.074-2
 - Added Provides info
 
