@@ -1,16 +1,20 @@
 Name:           demeter
 Version:        0.9.26
-Release:        5%{?dist}
+Release:        6%{?dist}
 Summary:        A comprehensive XAS data analysis system using Feff and Ifeffit or Larch
 
 License:        Artistic  
 URL:            http://bruceravel.github.io/demeter/
 Source0:        https://github.com/bruceravel/demeter/archive/refs/heads/master.tar.gz
+Source1:        Athena.desktop
+Source2:        Artemis.desktop
+Source3:        Hephaestus.desktop
 
 Patch0:         demeter-remove-fityk-declaration.patch
 Patch1:         demeter-ifeffitwrap-compiler-errors.patch
 
 BuildArch:      x86_64
+BuildRequires:  desktop-file-utils
 BuildRequires:  gcc-gfortran
 BuildRequires:  gnuplot
 BuildRequires:  ifeffit
@@ -106,7 +110,6 @@ Requires:  perl(Want)
 Requires:  perl(Wx)
 Requires:  perl(XMLRPC::Lite)
 Requires:  perl(YAML::Tiny)
-Requires:  perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $version))
 Requires:  qt5-qtsvg
 
 %{?perl_default_filter}
@@ -116,8 +119,8 @@ Process and analyze X-ray Absorption Spectroscopy data using Feff and either Lar
 
 %prep
 %setup -q -n %{name}-master
-%patch0 -p1 -b .fityk
-%patch1 -p1 -b .compiler_errors_ifeffitwrap
+%patch 0 -p1 -b .fityk
+%patch 1 -p1 -b .compiler_errors_ifeffitwrap
 
 %build
 # Remove OPTIMIZE=... from noarch packages (unneeded)
@@ -141,6 +144,9 @@ rm -rf $RPM_BUILD_ROOT
 #find $RPM_BUILD_ROOT -depth -type d -exec rmdir {} 2>/dev/null ';'
 %{_fixperms} $RPM_BUILD_ROOT/*
 
+desktop-file-install --dir=%{buildroot}%{_datadir}/applications %{SOURCE1}
+desktop-file-install --dir=%{buildroot}%{_datadir}/applications %{SOURCE2}
+desktop-file-install --dir=%{buildroot}%{_datadir}/applications %{SOURCE3}
 
 %check
 #./Build test
@@ -149,6 +155,9 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %license LICENSE
 #%doc add-docs-here
+%{_datadir}/applications/Artemis.desktop
+%{_datadir}/applications/Athena.desktop
+%{_datadir}/applications/Hephaestus.desktop
 %{_bindir}/dartemis
 %{_bindir}/dathena
 %{_bindir}/datoms
@@ -167,6 +176,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Thu Aug  3 2023 Stuart Campbell (scampbell@bnl.gov) - 0.9.26-6
+- Added .desktop files
+
 * Tue Jun 21 2022 Stuart Campbell (scampbell@bnl.gov) - 0.9.26-5
 - Added Autodie/Fatal to build dependencies
 
