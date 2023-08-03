@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=Application
+NoDisplay=false
+Terminal=false
+Exec=/usr/bin/dartemis
+Icon=/usr/lib64/perl5/vendor_perl/Demeter/UI/Artemis/share/artemis_icon.png
+Name=Artemis
+Comment=Graphical interface for EXAFS data analysis
+Categories=Science

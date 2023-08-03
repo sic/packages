@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=Application
+NoDisplay=false
+Terminal=false
+Exec=/usr/bin/dhephaestus
+Icon=/usr/lib64/perl5/vendor_perl/Demeter/UI/Hephaestus/icons/vulcan.png
+Name=Hephaestus
+Comment=A souped-up periodic table for the X-ray absorption spectroscopist
+Categories=Science
