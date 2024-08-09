@@ -3,7 +3,7 @@ Version:        0.9.26
 Release:        6%{?dist}
 Summary:        A comprehensive XAS data analysis system using Feff and Ifeffit or Larch
 
-License:        Artistic  
+License:        Artistic
 URL:            http://bruceravel.github.io/demeter/
 Source0:        https://github.com/bruceravel/demeter/archive/refs/heads/master.tar.gz
 Source1:        Athena.desktop
@@ -13,7 +13,6 @@ Source3:        Hephaestus.desktop
 Patch0:         demeter-remove-fityk-declaration.patch
 Patch1:         demeter-ifeffitwrap-compiler-errors.patch
 
-BuildArch:      x86_64
 BuildRequires:  desktop-file-utils
 BuildRequires:  gcc-gfortran
 BuildRequires:  gnuplot
@@ -115,12 +114,12 @@ Requires:  qt5-qtsvg
 %{?perl_default_filter}
 
 %description
-Process and analyze X-ray Absorption Spectroscopy data using Feff and either Larch or Ifeffit. 
+Process and analyze X-ray Absorption Spectroscopy data using Feff and either Larch or Ifeffit.
 
 %prep
 %setup -q -n %{name}-master
-%patch 0 -p1 -b .fityk
-%patch 1 -p1 -b .compiler_errors_ifeffitwrap
+%patch0 -p1 -b .fityk
+%patch1 -p1 -b .compiler_errors_ifeffitwrap
 
 %build
 # Remove OPTIMIZE=... from noarch packages (unneeded)
@@ -154,7 +153,6 @@ desktop-file-install --dir=%{buildroot}%{_datadir}/applications %{SOURCE3}
 
 %files
 %license LICENSE
-#%doc add-docs-here
 %{_datadir}/applications/Artemis.desktop
 %{_datadir}/applications/Athena.desktop
 %{_datadir}/applications/Hephaestus.desktop
@@ -190,7 +188,7 @@ desktop-file-install --dir=%{buildroot}%{_datadir}/applications %{SOURCE3}
 - Added some missing dependencies
 
 * Mon May 03 2021 Stuart Campbell <scampbell@bnl.gov>
-- Apply patch to remove explicit fityk 
+- Apply patch to remove explicit fityk
 
 * Mon May 03 2021 Stuart Campbell <scampbell@bnl.gov>
 - Initial Package
