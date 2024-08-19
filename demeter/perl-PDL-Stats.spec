@@ -1,32 +1,27 @@
 Name:           perl-PDL-Stats
-Version:        0.76
-Release:        4%{?dist}
+Version:        0.84
+Release:        1%{?dist}
 Summary:        Collection of statistics modules in Perl Data Language, with a quick-start guide for non-PDL people
 License:        GPL+ or Artistic
 Group:          Development/Libraries
 URL:            http://search.cpan.org/dist/PDL-Stats/
 Source0:        http://www.cpan.org/authors/id/E/ET/ETJ/PDL-Stats-%{version}.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-BuildArch:      x86_64
-BuildRequires:  gsl-devel
+BuildArch       noarch
 BuildRequires:  make
 BuildRequires:  perl-generators
-BuildRequires:  perl-interpreter
-BuildRequires:  perl-devel
 BuildRequires:  perl(ExtUtils::MakeMaker)
 BuildRequires:  perl(PDL::Core)
 BuildRequires:  perl(PDL::Slatec)
-BuildRequires:  perl-PDL-tests
 BuildRequires:  perl(Test::More)
 Requires:       perl(PDL::Core)
 Requires:       perl(PDL::Slatec)
 Requires:       perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $version))
-Provides:       perl(PDL::Stats) = %{version}
-Provides:       perl(PDL::Stats::Basic) = %{version}
-Provides:       perl(PDL::Stats::Distr) = %{version}
-Provides:       perl(PDL::Stats::GLM) = %{version}
-Provides:       perl(PDL::Stats::Kmeans) = %{version}
-Provides:       perl(PDL::Stats::TS) = %{version} 
+Provides:       perl(PDL::Stats)
+Provides:       perl(PDL::Stats::Basic)
+Provides:       perl(PDL::Stats::GLM)
+Provides:       perl(PDL::Stats::Kmeans)
+Provides:       perl(PDL::Stats::TS)
 
 
 %description
@@ -51,16 +46,18 @@ find $RPM_BUILD_ROOT -depth -type d -exec rmdir {} 2>/dev/null \;
 %{_fixperms} $RPM_BUILD_ROOT/*
 
 %check
-export HARNESS_OPTIONS=j$(perl -e 'if ($ARGV[0] =~ /.*-j([0-9][0-9]*).*/) {print $1} else {print 1}' -- '%{?_smp_mflags}')
 make test
 
 %files
 %defattr(-,root,root,-)
 %doc Changes META.json README.md
-%{perl_vendorarch}/*
+%{perl_vendorlib}/*
 %{_mandir}/man3/*
 
 %changelog
+* Fri Aug 16 2024 Stuart Campbell <scampbell@bnl.gov> - 0.76-5
+- Remove explicit BuildArch
+
 * Thu Jun 16 2022 Stuart Campbell <scampbell@bnl.gov> - 0.76-4
 - Add make to build dependencies
 
