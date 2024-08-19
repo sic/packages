@@ -9,6 +9,7 @@ Source0:        https://cpan.metacpan.org/authors/id/R/RJ/RJBS/Config-INI-%{vers
 BuildArch:      noarch
 BuildRequires: make
 BuildRequires:  perl-generators
+BuildRequires:  perl(CPAN::Meta)
 BuildRequires:  perl(ExtUtils::MakeMaker)
 BuildRequires:  perl(IO::File) >= 1.14
 BuildRequires:  perl(IO::String)
