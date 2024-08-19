@@ -1,6 +1,6 @@
 Name:           perl-Chemistry-Elements
-Version:        1.074
-Release:        3%{?dist}
+Version:        1.077
+Release:        2%{?dist}
 Summary:        Perl extension for working with Chemical Elements
 License:        Artistic 2.0
 Group:          Development/Libraries
@@ -11,10 +11,11 @@ BuildArch:      noarch
 BuildRequires:  make
 BuildRequires:  perl-generators
 BuildRequires:  perl-interpreter
+BuildRequires:  perl-subs
 BuildRequires:  perl(ExtUtils::MakeMaker)
 BuildRequires:  perl(Test::More)
 Requires:       perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $version))
-Provides:	perl(Chemistry::Elements)
+Provides:       perl(Chemistry::Elements)
 
 %description
 There are two parts to the module: the object stuff and the exportable
@@ -48,6 +49,12 @@ make test
 %{_mandir}/man3/*
 
 %changelog
+* Sun Aug 18 2024 Stuart Campbell (scampbell@bnl.gov) - 1.077-2
+- Add perl-subs to build dependencies
+
+* Sun Aug 18 2024 Stuart Campbell (scampbell@bnl.gov) - 1.077-1
+- Bump version to 1.077
+
 * Wed Jun 22 2022 Stuart Campbell (scampbell@bnl.gov) - 1.074-3
 - Added make, perl-generator and perl-interpreter to build deps
 
