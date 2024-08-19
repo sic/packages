@@ -174,7 +174,7 @@ desktop-file-install --dir=%{buildroot}%{_datadir}/applications %{SOURCE3}
 
 
 %changelog
-* Fri Aug  9 2023 Stuart Campbell (scampbell@bnl.gov) - 0.9.26-7
+* Fri Aug  9 2024 Stuart Campbell (scampbell@bnl.gov) - 0.9.26-7
 - Fixed issues with patch definitions and fixed rpmlint issues
 
 * Thu Aug  3 2023 Stuart Campbell (scampbell@bnl.gov) - 0.9.26-6
