@@ -1,6 +1,6 @@
 Name:           perl-Graphics-GnuplotIF
 Version:        1.8
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Dynamic Perl interface to gnuplot
 License:        CHECK(Distributable)
 Group:          Development/Libraries
@@ -8,11 +8,14 @@ URL:            http://search.cpan.org/dist/Graphics-GnuplotIF/
 Source0:        http://www.cpan.org/authors/id/M/ME/MEHNER/Graphics-GnuplotIF-%{version}.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      noarch
+BuildRequires:  gnuplot
+BuildRequires:  perl-interpreter
 BuildRequires:  perl-generators
 BuildRequires:  perl(ExtUtils::MakeMaker)
 BuildRequires:  perl(Module::Build)
 BuildRequires:  perl(Test::More)
 BuildRequires:  perl(version)
+Requires:       gnuplot
 Requires:       perl(Test::More)
 Requires:       perl(version)
 Requires:       perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $version))
@@ -50,10 +53,13 @@ find $RPM_BUILD_ROOT -depth -type d -exec rmdir {} 2>/dev/null \;
 %{_mandir}/man3/*
 
 %changelog
+* Mon Aug 19 2024 Stuart Campbell <scampbell@bnl.gov> - 1.8-4
+- Added perl-interpreter to build dependencies
+
 * Thu Jun 16 2022 Stuart Campbell <scampbell@bnl.gov> - 1.8-3
 - Added perl-generators to build dependencies
 
-* Sun May 06 2021 Stuart Campbell (scampbell@bnl.gov) 1.8-2
+* Thu May 06 2021 Stuart Campbell (scampbell@bnl.gov) 1.8-2
 - Added provides info
 
 * Sun Apr 11 2021 Stuart Campbell (scampbell@bnl.gov) 1.8-1
