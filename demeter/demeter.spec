@@ -1,6 +1,6 @@
 Name:           demeter
 Version:        0.9.26
-Release:        7%{?dist}
+Release:        8%{?dist}
 Summary:        A comprehensive XAS data analysis system using Feff and Ifeffit or Larch
 
 License:        Artistic
@@ -68,6 +68,9 @@ BuildRequires:  perl(XMLRPC::Lite)
 BuildRequires:  perl(YAML::Tiny)
 Requires:  gnuplot
 Requires:  ifeffit
+Requires:  perl-interpreter
+Requires:  perl-generators
+Requires:  perl-Graphics-GnuplotIF
 Requires:  perl(Archive::Zip)
 Requires:  perl(Capture::Tiny)
 Requires:  perl(Chemistry::Elements)
@@ -114,7 +117,8 @@ Requires:  qt5-qtsvg
 %{?perl_default_filter}
 
 %description
-Process and analyze X-ray Absorption Spectroscopy data using Feff and either Larch or Ifeffit.
+Process and analyze X-ray Absorption Spectroscopy data using 
+Feff and either Larch or Ifeffit.
 
 %prep
 %setup -q -n %{name}-master
@@ -174,6 +178,9 @@ desktop-file-install --dir=%{buildroot}%{_datadir}/applications %{SOURCE3}
 
 
 %changelog
+* Mon Aug 19 2024 Stuart Campbell (scampbell@bnl.gov) - 0.9.26-8
+- Added dependencies
+
 * Fri Aug  9 2024 Stuart Campbell (scampbell@bnl.gov) - 0.9.26-7
 - Fixed issues with patch definitions and fixed rpmlint issues
 
